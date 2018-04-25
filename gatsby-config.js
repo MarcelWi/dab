@@ -1,9 +1,8 @@
 module.exports = {
   siteMetadata: {
     url: 'https://lumen.netlify.com',
-    title: 'Blog by John Doe',
-    subtitle: 'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
-    copyright: '© All rights reserved.',
+    title: 'DAB Gatsby Boilerplate',
+    subtitle: 'This is the DAB Gatsby Boilerplate Description',
     disqusShortname: '',
     menu: [
       {
@@ -17,6 +16,10 @@ module.exports = {
       {
         label: 'Contact me',
         path: '/contact/'
+      },
+      {
+        label: 'CMS',
+        path: '/cms/'
       }
     ]
   },
@@ -26,62 +29,6 @@ module.exports = {
       options: {
         path: `${__dirname}/src/pages`,
         name: 'pages'
-      }
-    },
-    {
-      resolve: 'gatsby-plugin-feed',
-      options: {
-        query: `
-          {
-            site {
-              siteMetadata {
-                site_url: url
-                title
-                description: subtitle
-              }
-            }
-          }
-        `,
-        feeds: [
-          {
-            serialize: ({ query: { site, allMarkdownRemark } }) => (
-              allMarkdownRemark.edges.map(edge =>
-                Object.assign({}, edge.node.frontmatter, {
-                  description: edge.node.frontmatter.description,
-                  date: edge.node.frontmatter.date,
-                  url: site.siteMetadata.site_url + edge.node.fields.slug,
-                  guid: site.siteMetadata.site_url + edge.node.fields.slug,
-                  custom_elements: [{ 'content:encoded': edge.node.html }]
-                }))
-            ),
-            query: `
-              {
-                allMarkdownRemark(
-                  limit: 1000,
-                  sort: { order: DESC, fields: [frontmatter___date] },
-                  filter: { frontmatter: { layout: { eq: "post" }, draft: { ne: true } } }
-                ) {
-                  edges {
-                    node {
-                      html
-                      fields {
-                        slug
-                      }
-                      frontmatter {
-                        title
-                        date
-                        layout
-                        draft
-                        description
-                      }
-                    }
-                  }
-                }
-              }
-            `,
-            output: '/rss.xml'
-          }
-        ]
       }
     },
     {
@@ -107,13 +54,11 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: { trackingId: 'UA-73379983-2' }
-    },
-    {
-      resolve: `gatsby-plugin-google-fonts`,
+      resolve: `gatsby-source-prismic`,
       options: {
-        fonts: [`roboto\:400,400i,500,700`]
+        repositoryName: `marzl`,
+        // accessToken: `MC5XdC1obUNjQUFMVU5IeGFG.77-9dyzvv73vv73vv70X77-977-9HXtvD27vv71qNE5a77-977-977-9fCrvv73vv73vv73vv73vv73vv73vv71Q`,
+        accessToken: `MTUyNDY3NDE2OTYzNC5XdUNiUXljQUFMWU5JMFVx.77-9RRPvv73vv73vv73vv73vv70Iczt277-977-977-977-9Ge-_vSLvv73vv71577-977-9YyTvv70Ubnnvv73vv70`,
       }
     },
     {
