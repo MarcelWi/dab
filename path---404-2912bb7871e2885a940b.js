@@ -1,0 +1,2 @@
+webpackJsonp([0xe70826b53c04],{389:function(t,e){t.exports={data:{site:{siteMetadata:{title:"Blog by John Doe",subtitle:"Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.",menu:[{label:"Articles",path:"/"},{label:"About me",path:"/about/"},{label:"Contact me",path:"/contact/"}]}}},pathContext:{}}}});
+//# sourceMappingURL=path---404-2912bb7871e2885a940b.js.map
